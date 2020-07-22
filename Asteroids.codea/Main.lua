@@ -1,4 +1,4 @@
--- AsteroidsCodea
+-- AsteroidsCodea, Philipp Hackbarth 2020
 
 -- Use this function to perform your initial setup
 function setup()
