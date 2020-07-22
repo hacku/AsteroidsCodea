@@ -2,31 +2,35 @@
 
 
 function setup()
-    print("Hello World!")
-    x = 400
-    y = 50
+    print("Hello Asteroids!")
+    pos = vec2(400,500)
+    angle = math.random() * 2 * math.pi
+    vel = 1.5
 end
 
 
 function draw()
 
     background(2, 2, 2)
-    strokeWidth(1)
+    strokeWidth(2)
     stroke(255)
     fill(2)
-    ellipseMode(CENTER)
-    ellipse(x,y,120)             
+    rectMode(CENTER)
+    rect(pos.x,pos.y,120) 
+    
+    -- velocity of asteroid
+    local step = vec2(vel,0):rotate(angle)
     
     -- move asteroid
-    x = x + 1
-    y = y + 2
+    pos = pos + step            
+    
     
     -- check screen boundaries
-    if x > WIDTH then x = x - WIDTH end
-    if x < 0 then x = x + WIDTH end
+    if pos.x > WIDTH then pos.x = pos.x - WIDTH end
+    if pos.x < 0 then pos.x = pos.x + WIDTH end
     
-    if y > HEIGHT then y = y - HEIGHT end
-    if y < 0 then y = y + HEIGHT end
+    if pos.y > HEIGHT then pos.y = pos.y - HEIGHT end
+    if pos.y < 0 then pos.y = pos.y + HEIGHT end
     
 end
 
