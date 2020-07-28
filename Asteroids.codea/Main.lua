@@ -10,7 +10,6 @@ function setup()
         table.insert(asteroids,createAsteroid())
     end
     
-    
     vel = 1.5
 end
 
@@ -22,25 +21,29 @@ function createAsteroid()
     return asteroid
 end
 
+-- boundary calculation for asteroids
+function putInBounds(value, boundary)
+    return (value + boundary) % boundary
+end
 
 function draw()
-
     background(2, 2, 2)
     drawAsteroids()
-    
 end
 
 -- draws all created asteroids on screen
 function drawAsteroids()
+    pushStyle()
     strokeWidth(2)
     stroke(255)
-    fill(2)
+    fill(0,0,0,0)
     rectMode(CENTER)
     
     for i,asteroid in ipairs(asteroids) do
         drawAsteroid(asteroid)
         moveAsteroid(asteroid)
     end
+    popStyle()
 end
 
 -- draws one asteroid on screen
@@ -54,12 +57,8 @@ function moveAsteroid(asteroid)
     local step = vec2(vel,0):rotate(asteroid.angle)
         
      -- move asteroid
-    asteroid.pos = asteroid.pos + step            
-            
-    -- check screen boundaries
-    if asteroid.pos.x > WIDTH then asteroid.pos.x = asteroid.pos.x - WIDTH end
-    if asteroid.pos.x < 0 then asteroid.pos.x = asteroid.pos.x + WIDTH end
-            
-    if asteroid.pos.y > HEIGHT then asteroid.pos.y = asteroid.pos.y - HEIGHT end
-    if asteroid.pos.y < 0 then asteroid.pos.y = asteroid.pos.y + HEIGHT end
+    local pos = asteroid.pos + step            
+
+    -- check new position 
+    asteroid.pos = vec2(putInBounds(pos.x, WIDTH), putInBounds(pos.y, HEIGHT))
 end

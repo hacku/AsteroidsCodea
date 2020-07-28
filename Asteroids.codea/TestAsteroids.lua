@@ -44,6 +44,13 @@ function testAsteroids()
             _:expect(rvy).is(-708)
         end)
         
-        
+        -- test boundary check
+        _:test("Boundary check", function()
+            _:expect(putInBounds(100,1000)).is(100)
+            _:expect(putInBounds(1000,1000)).is(0)
+            _:expect(putInBounds(1001,1000)).is(1)
+            _:expect(putInBounds(-1,1000)).is(999)
+        end)
     end)
 end
+
