@@ -26,30 +26,40 @@ end
 function draw()
 
     background(2, 2, 2)
+    drawAsteroids()
+    
+end
+
+-- draws all created asteroids on screen
+function drawAsteroids()
     strokeWidth(2)
     stroke(255)
     fill(2)
     rectMode(CENTER)
     
     for i,asteroid in ipairs(asteroids) do
-        rect(asteroid.pos.x,asteroid.pos.y,120) 
-    
-        -- velocity of asteroid
-        local step = vec2(vel,0):rotate(asteroid.angle)
-        
-        -- move asteroid
-        asteroid.pos = asteroid.pos + step            
-        
-        
-        -- check screen boundaries
-        if asteroid.pos.x > WIDTH then asteroid.pos.x = asteroid.pos.x - WIDTH end
-        if asteroid.pos.x < 0 then asteroid.pos.x = asteroid.pos.x + WIDTH end
-        
-        if asteroid.pos.y > HEIGHT then asteroid.pos.y = asteroid.pos.y - HEIGHT end
-        if asteroid.pos.y < 0 then asteroid.pos.y = asteroid.pos.y + HEIGHT end
+        drawAsteroid(asteroid)
+        moveAsteroid(asteroid)
     end
-    
-    
-    
 end
 
+-- draws one asteroid on screen
+function drawAsteroid(asteroid)
+    rect(asteroid.pos.x,asteroid.pos.y,120) 
+end
+
+-- moves an asteroid on screen, resets position on boundaries
+function moveAsteroid(asteroid)
+    -- velocity of asteroid
+    local step = vec2(vel,0):rotate(asteroid.angle)
+        
+     -- move asteroid
+    asteroid.pos = asteroid.pos + step            
+            
+    -- check screen boundaries
+    if asteroid.pos.x > WIDTH then asteroid.pos.x = asteroid.pos.x - WIDTH end
+    if asteroid.pos.x < 0 then asteroid.pos.x = asteroid.pos.x + WIDTH end
+            
+    if asteroid.pos.y > HEIGHT then asteroid.pos.y = asteroid.pos.y - HEIGHT end
+    if asteroid.pos.y < 0 then asteroid.pos.y = asteroid.pos.y + HEIGHT end
+end
