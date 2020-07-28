@@ -6,17 +6,20 @@ function setup()
     
     asteroids = {}
     
-    for i = 0,1 do
-        asteroid = {}
-        asteroid.pos = vec2(math.random(WIDTH),math.random(HEIGHT))
-        asteroid.angle = math.random() * 2 * math.pi
-    
-        table.insert(asteroids,asteroid)
-        
+    for i = 0,10 do
+        table.insert(asteroids,createAsteroid())
     end
     
     
     vel = 1.5
+end
+
+-- create new asteroid
+function createAsteroid()
+    local asteroid = {}
+    asteroid.pos = vec2(math.random(WIDTH),math.random(HEIGHT))
+    asteroid.angle = math.random() * 2 * math.pi
+    return asteroid
 end
 
 
