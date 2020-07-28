@@ -51,6 +51,12 @@ function testAsteroids()
             _:expect(putInBounds(1001,1000)).is(1)
             _:expect(putInBounds(-1,1000)).is(999)
         end)
+        
+        --test extended is-test-function
+        -- check: https://ronjeffries.com/articles/020-asteroids/asteroids-4/
+        _:test("Test is-test", function()
+            _:expect(1.2).is(1.25,0.5)
+        end)
     end)
 end
 
