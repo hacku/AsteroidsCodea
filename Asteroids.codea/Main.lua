@@ -27,7 +27,9 @@ function putInBounds(value, boundary)
 end
 
 function draw()
+    -- setup scene
     background(2, 2, 2)
+    -- draw objects
     drawAsteroids()
 end
 
